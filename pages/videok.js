@@ -12,7 +12,7 @@ function Videok({ videos }) {
             key={video.id}
             className="bg-white h-72 shadow-lg rounded-lg p-4 lg:p-8 pb-12 mb-8"
           >
-            <video src={video.url} controls type={video.mimeType} />
+            <video src={video.video.url} controls type={video.video.mimeType} />
             <h2 className="w-72 text-center mt-4 text-lg font-semibold">
               {video.name}
             </h2>
@@ -25,7 +25,7 @@ function Videok({ videos }) {
 
 // Fetch data at build time
 export async function getStaticProps() {
-  const videos = await getVideos();
+  const videos = (await getVideos()) || [];
 
   return {
     props: { videos },
